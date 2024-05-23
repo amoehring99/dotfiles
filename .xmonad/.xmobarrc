@@ -1,0 +1,41 @@
+--
+-- Config made by Jonas "Satyg" Ingemarsson - based on research and sample configs on internet.
+-- Github: https://github.com/satyg-66
+--
+-- My colors are based on Dracula theme
+-- *iconRoot is set for future purpose where I will add a logo, and the directory needs to be created manually. (Hence, it need to be xpm format)
+--
+--
+--
+Config { font               = "JetBrainsMonoNerdFont 13"
+       , bgColor            = "#191919"
+       , fgColor            = "#f8f8f2"
+       , position           = TopH 25
+       , lowerOnStart       = True
+       , iconRoot           = "$HOME/.xmonad/resources" -- default: "."
+       , textOffset          = 2
+       , commands           = [ Run Date "<fn=1>\xf133 </fn>  %d %B [%H:%M] " "date" 10
+                              , Run Cpu ["-t", "CPU: (<total>%)", "-H","50","--high","red"] 20
+                              , Run Memory ["-t", "RAM: <used>M (<usedratio>%)"] 40
+                              , Run Com "/bin/bash" ["-c", "~/.xmonad/get-volume.sh"]  "myvolume" 1
+                              , Run Com "/bin/bash" ["-c", "~/.xmonad/wireless.sh"]  "mywireless" 1
+                              , Run Com "/bin/bash" ["-c", "echo `lux -G | grep -oE '^.[0-9]{0,3}'`"]  "mybright" 1
+							  , Run Com "/bin/bash" ["-c", "~/.xmonad/battery.sh"] "mybattery" 1
+                              , Run Battery
+                                    [ "-t", "<acstatus> <left>"
+                                    , "--"
+                                    , "-O", ""
+                                    , "-i", ""
+                                    , "-o", ""
+                                    , "-L", "20", "-l", "red"
+                                    , "-H", "80", "-h", "green"
+                                    , "-m", "white"
+                                    , "-p", "green"  -- This appears to not be working on my X1 Carbon
+                                    , "-P"
+                                    ] 10
+                              ]
+       , sepChar            = "%"
+       , alignSep           = "}{"
+       , template           = "%myvolume% <fc=#ffb86c>  %mybright% </fc><fc=#ff79c6> %mywireless% </fc> }{ <fc=#6272a4> %memory% </fc><fc=#44475a> | </fc><fc=#ff79c6> %cpu% </fc><fc=#44475a> |</fc><fc=#ffb86c> %date% </fc> %mybattery%"
+       }
+
