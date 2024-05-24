@@ -243,3 +243,6 @@ export GTK_OVERLAY_SCROLLING=0
 # ---- Vivado ---
 source /tools/Xilinx/Vivado/2023.2/settings64.sh
 export _JAVA_AWT_WM_NONREPARENTING=1
+
+# node version manager
+source /usr/share/nvm/init-nvm.sh
