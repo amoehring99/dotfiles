@@ -15,6 +15,9 @@ xsetroot -cursor_name left_ptr
 ### autostart applications ###
 ##############################
 
+# set monitor layout given in ~/.screenlayout/standardLayout.sh
+~/.screenlayout/standardLayout.sh
+
 # hide mouse cursor when typing
 xbanish -s -t 3 &
 # polkit agent for authentication
