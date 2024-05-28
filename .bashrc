@@ -62,7 +62,8 @@ alias vpn='/home/amoehring99/VPN/vpn.sh'
 alias monitor='arandr & disown > /dev/null'
 alias timer='termdown'
 alias layout='setxkbmap -layout'
-
+alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
+alias riplong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | nl" 
 # Quality of life alias
 
 alias f='fzf'
@@ -80,6 +81,7 @@ alias t='tmux'
 alias verilog='source ~/fpga_toolchain/apio/venv/bin/activate'
 # git commmand to keep track of dotfiles
 alias config='/usr/bin/git --git-dir=/home/amoehring99/.cfg/ --work-tree=/home/amoehring99'
+alias mountGames='sudo mount UUID=ae684089-708c-4b03-ae00-1a6d926e7060 ~/Games/'
 
 # Uni alias
 
