@@ -5,6 +5,9 @@
 # set mouse acceleration to 0
 xset m 0 0
 
+# disable screen saver blanking
+xset s off
+
 # set default cursor
 xsetroot -cursor_name left_ptr
 
