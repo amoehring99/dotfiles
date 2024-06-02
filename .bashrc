@@ -82,6 +82,8 @@ alias verilog='source ~/fpga_toolchain/apio/venv/bin/activate'
 # git commmand to keep track of dotfiles
 alias config='/usr/bin/git --git-dir=/home/amoehring99/.cfg/ --work-tree=/home/amoehring99'
 alias mountGames='sudo mount UUID=ae684089-708c-4b03-ae00-1a6d926e7060 ~/Games/'
+# generate compile_commands.json for clangd
+alias clangdinit='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
 
 # Uni alias
 
