@@ -280,8 +280,9 @@ myLogHook = return ()
 -- By default, do nothing.
 myStartupHook = do
     spawnOnce "nitrogen --restore &"
-    spawnOnce "/home/amoehring99/.config/picom/switch_transparency.sh true &"
-    spawnOnce "xmobar /home/amoehring99/.xmonad/.xmobarrc"
+
+--  spawnOnce "/home/amoehring99/.config/picom/switch_transparency.sh true &"
+--  spawnOnce "xmobar /home/amoehring99/.xmonad/.xmobarrc"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
