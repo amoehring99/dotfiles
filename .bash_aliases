@@ -53,39 +53,16 @@ alias mouse='piper &'
 # open file with fzf and bat preview in terminal
 # alias f='open $(find . -type f | fzf -m --preview "bat --color=always --style=header,grid --line-range :500 {}")'
 
-# open file with fzf and bat preview in popup
-f() {
-    local depth="$1"  # Capture the provided depth parameter
-
-    if [[ -z "$depth" ]]; then
-        fd --type f --hidden |
-        fzf -m --tmux 65% --reverse --preview "bat --color=always --style=header,grid --line-range :500 {}" |
-        xargs -r handlr open
-    else
-        fd --type f --hidden --max-depth "$depth" |
-        fzf -m --tmux 65% --reverse --preview "bat --color=always --style=header,grid --line-range :500 {}" |
-        xargs -r handlr open
-    fi
-}
-
-# if cd is called without arguments, use fzf to select a directory to cd into
-cd() {
-    if [ $# -eq 0 ]; then
-        local selected_dir
-        selected_dir=$(fd --type d --hidden | fzf --tmux 65% --reverse --preview "exa -l --group-directories-first --icons --no-user --no-permissions --no-time --no-filesize {}")
-        if [ -n "$selected_dir" ]; then
-            command cd "$selected_dir" || return
-        else
-            echo "No directory selected."
-        fi
-    else
-        command cd "$@" || return
-    fi
-}
-mkcd ()
-{
-  mkdir -p -- "$1" && cd -P -- "$1" || return
-}
+# open file from CURRENT directory with fzf and bat preview in popup window
+alias f='f_func'
+# open file from HOME directory with fzf and bat preview in popup window
+alias fa='fa_func'
+# open directory from CURRENT directory with fzf and exa preview in popup window
+alias cd='cd_func'
+# open directory from HOME directory with fzf and exa preview in popup window
+alias cda='cda_func'
+# create directory and cd into it
+alias mkcd='mkcd_func'
 
 alias ..='cd ..'
 alias h='cd ~'
@@ -146,3 +123,85 @@ alias hso='cd ~/UNI/_SS24/HWSynthese/'
 alias lpd='cd ~/UNI/_SS24/LowPowerDesign/'
 alias ml='cd ~/UNI/_SS24/MLNaturwissenschaften/'
 alias ba='cd ~/UNI/BA'
+
+mkcd_func ()
+{
+  mkdir -p -- "$1" && cd -P -- "$1" || return
+}
+
+########################################################################################################################################
+######################################################## fuzzy finder functions ########################################################
+########################################################################################################################################
+
+# Helper function to select files or directories to fuzzy find from using fd
+fd_select() {
+    local type=$1
+    local base_dir=${2:-"."}
+    local depth=${3:-}
+
+    if [[ -z "$depth" ]]; then
+        if [[ "$base_dir" == "." ]]; then
+            fd --type "$type" --hidden
+        else
+            fd --type "$type" --hidden --absolute-path --base-directory "$base_dir"
+        fi
+    else
+        if [[ "$base_dir" == "." ]]; then
+            fd --type "$type" --hidden --max-depth "$depth"
+        else
+        fd --type "$type" --hidden --max-depth "$depth" --absolute-path --base-directory "$base_dir"
+        fi
+    fi
+}
+
+# Helper function to open files using fzf and bat preview
+fzf_select_file() {
+    local base_dir=${1:-"."}
+    local depth=$2
+
+    fd_select "f" "$base_dir" "$depth" | fzf -m --tmux 65% --reverse --preview "bat --color=always --style=header,grid --line-range :500 {}" | xargs -r handlr open
+}
+
+# Helper function to select directories using fzf
+fzf_select_dir() {
+    local base_dir=${1:-"."}
+
+    local selected_dir
+    selected_dir=$(fd_select "d" "$base_dir" | fzf --tmux 65% --reverse --preview "exa -l --group-directories-first --icons --no-user --no-permissions --no-time --no-filesize {}")
+    if [ -n "$selected_dir" ]; then
+        command cd "$selected_dir" || return
+        echo "   ↪ cd into '$selected_dir'"
+        echo "cd $selected_dir" >> ~/.bash_history
+    else
+        echo "    ↪ No directory selected."
+    fi
+}
+
+# Open file with fzf and bat preview in popup
+f_func() {
+    fzf_select_file "." "$1"
+}
+
+# If cd is called without arguments, use fzf to select a directory to cd into
+cd_func() {
+    if [ $# -eq 0 ]; then
+        fzf_select_dir "."
+    else
+        command cd "$@" || return
+        printf "cd %s\n" "$@" >> ~/.bash_history
+    fi
+}
+
+# Change directory from home directory using fzf
+cda_func() {
+    fzf_select_dir "$HOME"
+}
+
+# Open file from home directory with fzf and bat preview in popup
+fa_func() {
+    fzf_select_file "$HOME"
+}
+
+########################################################################################################################################
+################################################################# end ##################################################################
+########################################################################################################################################
