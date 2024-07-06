@@ -54,13 +54,25 @@ alias mouse='piper &'
 # alias f='open $(find . -type f | fzf -m --preview "bat --color=always --style=header,grid --line-range :500 {}")'
 
 # open file with fzf and bat preview in popup
-alias f='fd --type f --hidden | fzf-tmux -m -p --reverse --preview "bat --color=always --style=header,grid --line-range :500 {}" | xargs -r handlr open'
+f() {
+    local depth="$1"  # Capture the provided depth parameter
+
+    if [[ -z "$depth" ]]; then
+        fd --type f --hidden |
+        fzf -m --tmux 65% --reverse --preview "bat --color=always --style=header,grid --line-range :500 {}" |
+        xargs -r handlr open
+    else
+        fd --type f --hidden --max-depth "$depth" |
+        fzf -m --tmux 65% --reverse --preview "bat --color=always --style=header,grid --line-range :500 {}" |
+        xargs -r handlr open
+    fi
+}
 
 # if cd is called without arguments, use fzf to select a directory to cd into
 cd() {
     if [ $# -eq 0 ]; then
         local selected_dir
-        selected_dir=$(fd --type d --hidden | fzf-tmux -p --reverse --preview "exa -l --group-directories-first --icons --no-user --no-permissions --no-time --no-filesize {}")
+        selected_dir=$(fd --type d --hidden | fzf --tmux 65% --reverse --preview "exa -l --group-directories-first --icons --no-user --no-permissions --no-time --no-filesize {}")
         if [ -n "$selected_dir" ]; then
             command cd "$selected_dir" || return
         else
