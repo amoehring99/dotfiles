@@ -88,7 +88,7 @@ mkcd ()
 }
 
 alias ..='cd ..'
-aluas h='cd ~'
+alias h='cd ~'
 alias c='clear'
 alias off='shutdown -h now'
 alias suspend='systemctl suspend'
