@@ -50,17 +50,38 @@ alias mouse='piper &'
 
 # Quality of life alias
 
-alias f='fzf'
-alias cd='z'
-alias b='cd ./..'
+# open file with fzf and bat preview in terminal
+# alias f='open $(find . -type f | fzf -m --preview "bat --color=always --style=header,grid --line-range :500 {}")'
+
+# open file with fzf and bat preview in popup
+alias f='fd --type f --hidden | fzf-tmux -m -p --reverse --preview "bat --color=always --style=header,grid --line-range :500 {}" | xargs -r handlr open'
+
+# if cd is called without arguments, use fzf to select a directory to cd into
+cd() {
+    if [ $# -eq 0 ]; then
+        local selected_dir
+        selected_dir=$(fd --type d --hidden | fzf-tmux -p --reverse --preview "exa -l --group-directories-first --icons --no-user --no-permissions --no-time --no-filesize {}")
+        if [ -n "$selected_dir" ]; then
+            command cd "$selected_dir" || return
+        else
+            echo "No directory selected."
+        fi
+    else
+        command cd "$@" || return
+    fi
+}
+mkcd ()
+{
+  mkdir -p -- "$1" && cd -P -- "$1" || return
+}
+
+alias ..='cd ..'
 alias c='clear'
 alias off='shutdown -h now'
 alias suspend='systemctl suspend'
-alias search='sudo find / -name $1 2> /dev/null'
 alias bashrc='nvim ~/.bashrc'
 alias update='yay'
 alias lint='./lint.sh'
-alias o='fd --type f --hidden | fzf-tmux -p --reverse | xargs nvim'
 alias t='tmux'
 alias verilog='source ~/fpga_toolchain/apio/venv/bin/activate'
 # git commmand to keep track of dotfiles
