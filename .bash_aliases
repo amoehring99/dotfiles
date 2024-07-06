@@ -6,6 +6,7 @@ alias gpp='g++ -O2 -DNDEBUG -pedantic-errors -Wall -Weffc++ -Wextra -Wconversion
 # Program alias
 
 alias open='handlr open'
+alias mkdir='mkdir -p -v'
 alias cat='bat'
 alias la='eza -a --group-directories-first'
 alias ll='eza -l --group-directories-first --icons -l -a -a -b -h -H -i -m'
@@ -111,8 +112,3 @@ alias hso='cd ~/UNI/_SS24/HWSynthese/'
 alias lpd='cd ~/UNI/_SS24/LowPowerDesign/'
 alias ml='cd ~/UNI/_SS24/MLNaturwissenschaften/'
 alias ba='cd ~/UNI/BA'
-
-export EDITOR="/usr/bin/nvim"
-EDITOR=nvim
-VISUAL=nvim
-
