@@ -159,7 +159,15 @@ fzf_select_file() {
     local base_dir=${1:-"."}
     local depth=$2
 
-    fd_select "f" "$base_dir" "$depth" | fzf -m --tmux 65% --reverse --preview "bat --color=always --style=header,grid --line-range :500 {}" | xargs -r handlr open
+    local selected_files
+    selected_files=$(fd_select "f" "$base_dir" "$depth" | fzf -m --tmux 65% --reverse --preview "bat --color=always --style=header,grid --line-range :500 {}")
+    if [ -n "$selected_files" ]; then
+        handlr open "$selected_files"
+        echo "   ↪ Opened '$selected_files'"
+        echo "handlr open $selected_files" >> ~/.bash_history
+    else
+        echo "    ↪ No file selected."
+    fi
 }
 
 # Helper function to select directories using fzf
