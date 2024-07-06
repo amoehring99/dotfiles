@@ -17,9 +17,6 @@ export PATH
 # PATH environment variables
 export PATH="/home/A1ge6ra/src/systemverilog-toolchain/sv2v-Linux:$PATH"
 
-# User specific aliases and functions
-source "$HOME/.bash_aliases"
-
 export EDITOR="/usr/bin/nvim"
 EDITOR=nvim
 VISUAL=nvim
@@ -129,11 +126,7 @@ export BAT_THEME="Dracula"
 # thefuck alias (correct command typo)
 eval $(thefuck --alias)
 
-# ---- Zoxide (better cd) ----
-eval "$(zoxide init bash)"
-
 export GTK_OVERLAY_SCROLLING=0
-
 
 # ---- Vivado ---
 source /tools/Xilinx/Vivado/2023.2/settings64.sh
@@ -141,3 +134,6 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 
 # node version manager
 source /usr/share/nvm/init-nvm.sh
+
+# User specific aliases and functions
+source "$HOME/.bash_aliases"
