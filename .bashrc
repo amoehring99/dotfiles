@@ -70,11 +70,6 @@ export NVM_DIR="$HOME/.nvm"
 export WORKON_HOME=~/.virtualenvs
 source /usr/bin/virtualenvwrapper_lazy.sh
 
-# miniconda
-#. /usr/etc/profile.d/conda.sh
-#conda activate
-[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh source /home/amoehring99/.bashrc
-
 # ---- FZF -----
 
 # Set up fzf key bindings and fuzzy completion
@@ -142,3 +137,19 @@ source /usr/share/nvm/init-nvm.sh
 
 # User specific aliases and functions
 source "$HOME/.bash_aliases"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/amoehring99/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/amoehring99/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/amoehring99/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/amoehring99/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
