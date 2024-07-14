@@ -2,6 +2,9 @@
 ### x session options ###
 #########################
 
+# needed to enable umlaute key combination
+setxkbmap -option compose:menu
+
 # set mouse acceleration to 0
 xset m 0 0
 
