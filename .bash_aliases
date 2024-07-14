@@ -7,6 +7,7 @@ alias gpp='g++ -O2 -DNDEBUG -pedantic-errors -Wall -Weffc++ -Wextra -Wconversion
 
 alias open='handlr open'
 alias mkdir='mkdir -p -v'
+alias grep='grep --color=always'
 alias cat='bat'
 alias la='eza -a --group-directories-first'
 alias ll='eza -l --group-directories-first --icons -l -a -a -b -h -H -i -m'
@@ -65,6 +66,7 @@ alias cda='cda_func'
 alias mkcd='mkcd_func'
 
 alias ..='cd ..'
+alias ...='cd ../..'
 alias h='cd ~'
 alias c='clear'
 alias off='shutdown -h now'
