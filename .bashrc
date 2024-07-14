@@ -17,6 +17,9 @@ export PATH
 # PATH environment variables
 export PATH="/home/A1ge6ra/src/systemverilog-toolchain/sv2v-Linux:$PATH"
 
+# vim keybindings in bash
+set -o vi
+
 export EDITOR="/usr/bin/nvim"
 EDITOR=nvim
 VISUAL=nvim
@@ -152,4 +155,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
