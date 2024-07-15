@@ -81,6 +81,9 @@ alias config='/usr/bin/git --git-dir=/home/amoehring99/.cfg/ --work-tree=/home/a
 alias mountGames='sudo mount UUID=ae684089-708c-4b03-ae00-1a6d926e7060 ~/Games/'
 # generate compile_commands.json for clangd
 alias clangdinit='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
+# generate flamegraph from perf data and store files in ./perf folder 
+# if 
+alias flamegraph='perf script | stackcollapse-perf.pl | flamegraph.pl > ./perf/flamegraph.svg'
 
 # Uni alias
 
