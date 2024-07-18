@@ -155,3 +155,10 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+
+### bob, a neovim version manager
+if ! [[ "$PATH" =~ "$HOME/.local/share/bob/nvim-bin:" ]]; then
+	 PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
+fi
+export PATH
