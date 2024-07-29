@@ -1,5 +1,5 @@
 #! /bin/bash
-isTransparent="true"
+isTransparent="false"
 scriptpath=/home/amoehring99/.config/picom
 script=switch_transparency.sh
 config=$scriptpath/picom.conf
