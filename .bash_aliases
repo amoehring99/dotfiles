@@ -77,7 +77,7 @@ alias lint='./lint.sh'
 alias t='tmux'
 alias verilog='source ~/fpga_toolchain/apio/venv/bin/activate'
 # git commmand to keep track of dotfiles
-alias config='/usr/bin/git --git-dir=/home/amoehring99/.cfg/ --work-tree=/home/amoehring99'
+alias dotfiles='/usr/bin/git --git-dir=/home/amoehring99/.dotfiles/ --work-tree=/home/amoehring99'
 alias mountGames='sudo mount UUID=ae684089-708c-4b03-ae00-1a6d926e7060 ~/Games/'
 # generate compile_commands.json for clangd
 alias clangdinit='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
@@ -128,6 +128,9 @@ alias hso='cd ~/UNI/_SS24/HWSynthese/'
 alias lpd='cd ~/UNI/_SS24/LowPowerDesign/'
 alias ml='cd ~/UNI/_SS24/MLNaturwissenschaften/'
 alias ba='cd ~/UNI/BA'
+alias ez='cd ~/UNI/_SS24/Echtzeitsysteme/;
+          open ~/UNI/_SS24/Echtzeitsysteme/VL/echtzeitsysteme-all.pdf;
+          open ~/UNI/_SS24/Echtzeitsysteme/UB/echtzeitsysteme-ub-all.pdf;'
 
 mkcd_func ()
 {
