@@ -48,6 +48,8 @@ alias layout='setxkbmap -layout'
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 alias riplong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | nl" 
 alias mouse='piper &'
+alias profile-gen='valgrind --tool=callgrind --dump-instr=yes --collect-jumps=yes'
+alias profile-view='run_kcachegrind'
 
 # Quality of life alias
 
@@ -81,9 +83,6 @@ alias dotfiles='/usr/bin/git --git-dir=/home/amoehring99/.dotfiles/ --work-tree=
 alias mountGames='sudo mount UUID=ae684089-708c-4b03-ae00-1a6d926e7060 ~/Games/'
 # generate compile_commands.json for clangd
 alias clangdinit='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
-# generate flamegraph from perf data and store files in ./perf folder 
-# if 
-alias flamegraph='perf script | stackcollapse-perf.pl | flamegraph.pl > ./perf/flamegraph.svg'
 
 # Uni alias
 
@@ -136,6 +135,11 @@ mkcd_func ()
 {
   mkdir -p -- "$1" && cd -P -- "$1" || return
 }
+
+run_kcachegrind() {
+    nohup kcachegrind "$@" > /dev/null 2>&1 &
+}
+
 
 ########################################################################################################################################
 ######################################################## fuzzy finder functions ########################################################
