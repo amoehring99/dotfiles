@@ -162,3 +162,8 @@ if ! [[ "$PATH" =~ "$HOME/.local/share/bob/nvim-bin:" ]]; then
 	 PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 fi
 export PATH
+
+# Source GHC Haskell compiler via GHCup
+if [[ ":$PATH:" != *":$HOME/.ghcup/bin:"* ]]; then
+  export PATH="$HOME/.ghcup/bin:$PATH"
+fi
