@@ -48,8 +48,12 @@ alias layout='setxkbmap -layout'
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 alias riplong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | nl" 
 alias mouse='piper &'
-alias profile-gen='valgrind --tool=callgrind --dump-instr=yes --collect-jumps=yes'
-alias profile-view='run_kcachegrind'
+# profile cpp programs
+alias profile-cpu-gen='valgrind --tool=callgrind --dump-instr=yes --collect-jumps=yes'
+alias profile-cpu-view='run_kcachegrind'
+alias profile-memcheck='valgrind --tool=memcheck'
+alias profile-mem-gen='valgrind --tool=massif'
+alias profile-mem-view='run_massif_visualizer'
 
 # Quality of life alias
 
@@ -137,6 +141,9 @@ run_kcachegrind() {
     nohup kcachegrind "$@" > /dev/null 2>&1 &
 }
 
+run_massif_visualizer() {
+    nohup massif-visualizer "$@" > /dev/null 2>&1 &
+}
 
 ########################################################################################################################################
 ######################################################## fuzzy finder functions ########################################################
