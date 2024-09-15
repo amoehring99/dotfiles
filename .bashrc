@@ -20,6 +20,9 @@ export PATH="/home/A1ge6ra/src/systemverilog-toolchain/sv2v-Linux:$PATH"
 # vim keybindings in bash
 set -o vi
 
+# bash completion settings
+[[ $- == *i* ]] && source /usr/share/blesh/ble.sh --noattach
+
 export EDITOR="/usr/bin/nvim"
 EDITOR=nvim
 VISUAL=nvim
@@ -33,20 +36,6 @@ if [ -d ~/.bashrc.d ]; then
 fi
 
 unset rc
-
-### INIT STARSHIP BASH PROMPT ###
-__main() {
-	local major="${BASH_VERSINFO[0]}"
-	local minor="${BASH_VERSINFO[1]}"
-
-	if ((major > 4)) || { ((major == 4)) && ((minor >= 1)); }; then
-		source <(/usr/bin/starship init bash --print-full-init)
-	else
-		source /dev/stdin <<<"$(/usr/bin/starship init bash --print-full-init)"
-	fi
-}
-__main
-unset -f __main
 
 ### OPEN NEOFETCH ###
 if [[ $(echo $TERM | grep kitty) ]]; then
@@ -140,6 +129,12 @@ source /usr/share/nvm/init-nvm.sh
 
 # User specific aliases and functions
 source "$HOME/.bash_aliases"
+
+# User specific prompt
+source "$HOME/.bash_prompt"
+
+# ble-sh
+[[ ${BLE_VERSION-} ]] && ble-attach
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
