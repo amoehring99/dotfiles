@@ -14,6 +14,7 @@ alias ll='eza -l --group-directories-first --icons -l -a -a -b -h -H -i -m'
 alias ls='eza -l --group-directories-first --icons --no-user --no-permissions --no-time --no-filesize'
 alias vim='nvim'
 alias vi='nvim'
+alias v='nvim'
 alias firewall='sudo ufw'
 # ATTENTION: keep in mind that vivado spawns .Xil files everyhere it is started
 alias vivado='vivado -nolog -nojournal & disown > /dev/null'
