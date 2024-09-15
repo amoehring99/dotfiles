@@ -133,6 +133,8 @@ source "$HOME/.bash_aliases"
 # User specific prompt
 source "$HOME/.bash_prompt"
 
+source "$HOME/.oh-my-bashrc"
+
 # ble-sh
 [[ ${BLE_VERSION-} ]] && ble-attach
 
