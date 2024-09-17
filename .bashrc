@@ -130,9 +130,6 @@ source /usr/share/nvm/init-nvm.sh
 # User specific aliases and functions
 source "$HOME/.bash_aliases"
 
-# User specific prompt
-source "$HOME/.bash_prompt"
-
 source "$HOME/.oh-my-bashrc"
 
 # ble-sh
