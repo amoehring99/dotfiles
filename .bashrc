@@ -20,9 +20,6 @@ export PATH="/home/A1ge6ra/src/systemverilog-toolchain/sv2v-Linux:$PATH"
 # vim keybindings in bash
 set -o vi
 
-# bash completion settings
-[[ $- == *i* ]] && source /usr/share/blesh/ble.sh --noattach
-
 export EDITOR="/usr/bin/nvim"
 EDITOR=nvim
 VISUAL=nvim
@@ -130,11 +127,6 @@ source /usr/share/nvm/init-nvm.sh
 # User specific aliases and functions
 source "$HOME/.bash_aliases"
 
-source "$HOME/.oh-my-bashrc"
-
-# ble-sh
-[[ ${BLE_VERSION-} ]] && ble-attach
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/amoehring99/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
@@ -150,7 +142,6 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-
 ### bob, a neovim version manager
 if ! [[ "$PATH" =~ "$HOME/.local/share/bob/nvim-bin:" ]]; then
 	 PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
@@ -160,4 +151,11 @@ export PATH
 # Source GHC Haskell compiler via GHCup
 if [[ ":$PATH:" != *":$HOME/.ghcup/bin:"* ]]; then
   export PATH="$HOME/.ghcup/bin:$PATH"
+fi
+
+# use fish as interactive shell only
+if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} && ${SHLVL} == 1 ]]
+then
+	shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=''
+	exec fish $LOGIN_OPTION
 fi
