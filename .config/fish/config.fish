@@ -9,6 +9,10 @@ end
 # set theme for bat (cat with highlighting)
 set -x BAT_THEME "Dracula"
 
+# tmuxifier
+set -gx PATH "$HOME/.tmux/plugins/tmuxifier/bin" $PATH
+eval (tmuxifier init - fish)
+
 # neovim version manager
 set nvim_bin_path "$HOME/.local/share/bob/nvim-bin"
 if not contains $nvim_bin_path $PATH
