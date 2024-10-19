@@ -160,7 +160,7 @@ fi
 #auto completion for colcon python for ros2
 source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
 #source custom ros2 workspace
-source ~/git/ros2_ws/install/setup.bash
+source ~/git/ros2_tutorial/install/setup.bash
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
