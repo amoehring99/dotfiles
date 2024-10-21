@@ -1,3 +1,4 @@
-function rqt_graph
-    distrobox-enter -n ubuntu-22-04 -- bash -c 'source /opt/ros/humble/setup.bash && rqt_graph'
+function rqt_graph --description 'alias rqt_graph=rosbox rqt_graph'
+  rosbox rqt_graph $argv
+        
 end
