@@ -52,17 +52,24 @@ eval "$(tmuxifier init -)"
 eval "$(ssh-agent -s)" &>/dev/null
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+	. "$NVM_DIR/nvm.sh"                   # This loads nvm
+fi
+if [ -s "$NVM_DIR/bash_completion" ]; then
+	. "$NVM_DIR/bash_completion"           # This loads nvm bash_completion
+fi
 
 # virtualenvwrapper (commands for pip environments)
 export WORKON_HOME=~/.virtualenvs
-source /usr/bin/virtualenvwrapper_lazy.sh
+if [ -f /usr/bin/virtualenvwrapper_lazy.sh ]; then
+    source /usr/bin/virtualenvwrapper_lazy.sh
+fi
 
 # ---- FZF -----
 
 # Set up fzf key bindings and fuzzy completion
-eval "$(fzf --bash)"
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 
 # fzf dracula theme
 export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
@@ -78,8 +85,6 @@ SAVEHIST=10000
 shopt -s histappend
 
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
-# - The first argument to the function ($1) is the base path to start traversal
-# - See the source code (completion.{bash,zsh}) for the details.
 _fzf_compgen_path() {
   fd --hidden --exclude .git . "$1"
 }
@@ -89,7 +94,9 @@ _fzf_compgen_dir() {
   fd --type=d --hidden --exclude .git . "$1"
 }
 
-source ~/fzf-git.sh/fzf-git.sh
+if [ -f ~/fzf-git.sh/fzf-git.sh ]; then
+    source ~/fzf-git.sh/fzf-git.sh
+fi
 
 export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
@@ -118,14 +125,20 @@ eval $(thefuck --alias)
 export GTK_OVERLAY_SCROLLING=0
 
 # ---- Vivado ---
-source /tools/Xilinx/Vivado/2023.2/settings64.sh
+if [ -f /tools/Xilinx/Vivado/2023.2/settings64.sh ]; then
+    source /tools/Xilinx/Vivado/2023.2/settings64.sh
+fi
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # node version manager
-source /usr/share/nvm/init-nvm.sh
+if [ -f /usr/share/nvm/init-nvm.sh ]; then
+    source /usr/share/nvm/init-nvm.sh
+fi
 
 # User specific aliases and functions
-source "$HOME/.bash_aliases"
+if [ -f "$HOME/.bash_aliases" ]; then
+    source "$HOME/.bash_aliases"
+fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -157,11 +170,19 @@ fi
 if [[ $(echo $CONTAINER_ID | grep ubuntu-22-04) ]]; then
   source /opt/ros/humble/setup.bash
 fi
+
 #auto completion for colcon python for ros2
-source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
+if [ -f /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash ]; then
+    source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
+fi
+
 #source custom ros2 workspace
-source ~/git/ros2_tutorial/install/setup.bash
+if [ -f ~/git/ros2_tutorial/install/setup.bash ]; then
+    source ~/git/ros2_tutorial/install/setup.bash
+fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+if [ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]; then
+    source "$HOME/.sdkman/bin/sdkman-init.sh"
+fi
