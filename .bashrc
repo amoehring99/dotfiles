@@ -179,7 +179,7 @@ ros2_on(){
      # auto completion for colcon for ros2
      source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
      # source custom ros2 workspace
-     source ~/git/ros2_tutorial/install/setup.bash
+     source ~/git/ros2_ws/install/setup.bash
      # setup colcon_cd
      source /usr/share/colcon_cd/function/colcon_cd.sh
      export _colcon_cd_root=/opt/ros/humble/
