@@ -166,20 +166,28 @@ if [[ ":$PATH:" != *":$HOME/.ghcup/bin:"* ]]; then
   export PATH="$HOME/.ghcup/bin:$PATH"
 fi
 
-#source ros2 in ubuntu-22-04 container only
-if [[ $(echo $CONTAINER_ID | grep ubuntu-22-04) ]]; then
-  source /opt/ros/humble/setup.bash
+# >>> ros2 setup >>>
+
+# source all fils needed using command ros2_on
+ros2_on(){
+     export ROS_DOMAIN_ID=27
+     export ROS_VERSION=2
+     export ROS_PYTHON_VERSION=3
+     export ROS_DISTRO=humble
+     # source ros2 humble
+     source /opt/ros/humble/setup.bash
+     # auto completion for colcon for ros2
+     source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
+     # source custom ros2 workspace
+     source ~/git/ros2_tutorial/install/setup.bash
+}
+
+#always source ros2 in rosbox container
+if [[ $(echo $CONTAINER_ID | grep rosbox) ]]; then
+  ros2_on
 fi
 
-#auto completion for colcon python for ros2
-if [ -f /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash ]; then
-    source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
-fi
-
-#source custom ros2 workspace
-if [ -f ~/git/ros2_tutorial/install/setup.bash ]; then
-    source ~/git/ros2_tutorial/install/setup.bash
-fi
+# <<< ros2 setup <<<
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
