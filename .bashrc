@@ -176,10 +176,17 @@ ros2_on(){
      export ROS_DISTRO=jazzy
      # source ros2
      source /opt/ros/jazzy/setup.bash
+
      # auto completion for colcon for ros2
-     source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
+     if [ -f /usr/share/colcon_argcomplete/hook/colcon-argcompile.bash ]; then
+       source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
+     fi
+
      # source custom ros2 workspace
-     source ~/git/ros2_ws/install/setup.bash
+     if [ -f "$HOME/git/ros2_ws/install/setup.bash" ]; then
+       source $HOME/git/ros2_ws/install/setup.bash
+     fi
+
      # setup colcon_cd
      source /usr/share/colcon_cd/function/colcon_cd.sh
      export _colcon_cd_root=/opt/ros/jazzy/
