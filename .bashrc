@@ -173,16 +173,17 @@ ros2_on(){
      export ROS_DOMAIN_ID=27
      export ROS_VERSION=2
      export ROS_PYTHON_VERSION=3
-     export ROS_DISTRO=humble
-     # source ros2 humble
-     source /opt/ros/humble/setup.bash
+     export ROS_DISTRO=jazzy
+     # source ros2
+     source /opt/ros/jazzy/setup.bash
      # auto completion for colcon for ros2
      source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
      # source custom ros2 workspace
      source ~/git/ros2_ws/install/setup.bash
      # setup colcon_cd
      source /usr/share/colcon_cd/function/colcon_cd.sh
-     export _colcon_cd_root=/opt/ros/humble/
+     export _colcon_cd_root=/opt/ros/jazzy/
+     conda activate ros-env
 }
 
 #always source ros2 in rosbox container
