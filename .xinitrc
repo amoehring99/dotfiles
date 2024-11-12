@@ -8,6 +8,9 @@ setxkbmap -option compose:menu
 # set mouse acceleration to 0
 xset m 0 0
 
+# set trackpoint acceleration to 0
+xinput set-prop "TPPS/2 Elan TrackPoint" "libinput Accel Profile Enabled" 0 1 0
+
 # disable screen saver blanking
 xset s off
 
