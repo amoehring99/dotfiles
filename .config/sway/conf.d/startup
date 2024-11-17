@@ -1,0 +1,29 @@
+# vim: set filetype=swayconfig
+
+### auto start applications ###
+
+# Launch the Mako notification daemon for managing notifications in Wayland
+# exec mako
+exec swaync
+
+# Start the NetworkManager applet with the --indicator flag for network status in the system tray
+exec nm-applet --indicator
+
+# Start the PolicyKit GNOME authentication agent for handling privileged actions (like installing software)
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# Launch the Gammastep indicator to adjust screen color temperature based on time/location (Wayland mode)
+# Coordinates set for Paris (48.857:2.295) and night mode is enabled
+exec gammastep-indicator -m wayland -P -r -l 48.857:2.295
+
+# Start AppArmor log notification with aa-notify, monitoring severity 1 logs and checking the /var/log/audit/audit.log file
+exec aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log
+
+# Launch the Blueman applet for managing Bluetooth devices in the system tray
+exec blueman-applet
+
+# cloud sync
+exec nextcloud
+
+# Launch tmux
+exec kitty tmux &

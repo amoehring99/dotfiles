@@ -1,0 +1,111 @@
+# Read `man 5 sway` for a complete reference.
+
+### Variables
+#
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+
+set $left h
+set $down j
+set $up k
+set $right l
+# Your preferred terminal emulator
+set $term kitty tmux a
+# Your preferred application launcher
+# Note: pass the final command to swaymsg so that the resulting window can be opened
+# on the original workspace that the command was run on.
+
+set $menu ulauncher | xargs swaymsg exec --
+# set $menu wofi --insensitive --show drun | xargs swaymsg exec --
+
+### Configuration
+# Set the keyboard layout
+    input "*" {
+    xkb_layout de
+    #xkb_options "ctrl:nocaps" # Make Caps Lock an additional Ctrl
+}
+
+### Appearance
+
+# hide mouse cursor when typing
+seat * hide_cursor when-typing enable
+# hide mouse cursor after 3 seconds of inactivity
+seat * hide_cursor 3000
+
+# hide titlebar
+default_border pixel 3
+
+# hide borders for ulauncher
+for_window [app_id="ulauncher"] border none
+
+# window corner radius in px
+corner_radius 10
+
+# Window background blur
+blur off
+blur_xray off
+blur_passes 2
+blur_radius 5
+
+shadows off
+shadows_on_csd off
+shadow_blur_radius 20
+shadow_color #0000007F
+
+# inactive window fade amount. 0.0 = no dimming, 1.0 = fully dimmed
+default_dim_inactive 0.0
+dim_inactive_colors.unfocused #000000FF
+dim_inactive_colors.urgent #900000FF
+
+# Move minimized windows into Scratchpad (enable|disable)
+scratchpad_minimize disable
+
+# Status Bar {{{
+bar {
+  swaybar_command waybar
+}
+# }}}:
+
+### Output configuration
+#
+# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+output * bg /home/amoehring99/Pictures/wallpaper/wp6257053.jpg fill
+#
+# Example configuration:
+#
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+
+### Idle configuration
+#
+# Example configuration:
+#
+# exec swayidle -w \
+#          timeout 300 'swaylock -f -c 000000' \
+#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+#          before-sleep 'swaylock -f -c 000000'
+exec swayidle -w \
+  timeout 300 'swaylock -f' \
+  timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+  before-sleep 'swaylock -f'
+
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+
+### Input configuration
+#
+# Example configuration:
+#
+
+#       tap enabled
+#       natural_scroll enabled
+#       middle_emulation enabled
+#   }
+#
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+
+include conf.d/*
+include /etc/sway/config.d/*
