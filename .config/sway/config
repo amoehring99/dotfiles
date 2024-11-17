@@ -63,6 +63,8 @@ scratchpad_minimize disable
 # Status Bar {{{
 bar {
   swaybar_command waybar
+  # mode hide
+  modifier Mod4
 }
 # }}}:
 
