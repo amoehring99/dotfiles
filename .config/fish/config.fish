@@ -6,6 +6,9 @@ if status is-interactive
   set fish_cursor_visual      block
 end
 
+# set editor
+set -gx EDITOR nvim
+
 # set theme for bat (cat with highlighting)
 set -x BAT_THEME "Dracula"
 
