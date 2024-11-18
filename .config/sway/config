@@ -68,6 +68,13 @@ bar {
 }
 # }}}:
 
+
+# program settings
+for_window [app_id="blueman-manager"] floating enable, resize set 300 400,move position 1385 0
+# set ulauncher to middle of screen
+for_window [app_id="ulauncher"] floating enable, move position 665 200
+
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
