@@ -25,5 +25,5 @@ exec blueman-applet
 # cloud sync
 exec nextcloud
 
-# Launch tmux
-exec kitty tmux &
+# Launch tmux #export SWAYSOCK=$XDG_RUNTIME_DIR/sway-ipc.$UID.$(pgrep -x sway).sock
+exec kitty tmux
