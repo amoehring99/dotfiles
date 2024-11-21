@@ -33,7 +33,7 @@
         "id": "59f6886e-28f8-42ec-973d-3bfdf1cebb55",
         "name": "DuckDuckGo Search",
         "keyword": "ddg",
-        "cmd": "https://duckduckgo.com/search?q=%s",
+        "cmd": "https://duckduckgo.com/?q=%s",
         "icon": "~/Pictures/icon/duckduckgo-logo.png",
         "is_default_search": false,
         "run_without_argument": false,
