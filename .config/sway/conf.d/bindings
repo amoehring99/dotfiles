@@ -7,6 +7,9 @@
     # Start a terminal
     bindsym $mod+Return exec $term
 
+    # Toggle the bar
+    bindsym $mod+m bar mode toggle
+
     # Toggle swaync notifications
     bindsym $mod+Shift+n exec swaync-client -t -sw
 
@@ -14,7 +17,8 @@
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    # bindsym $mod+d exec $menu
+    bindsym $mod+p exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -119,7 +123,7 @@
 
 #
 # Media keys:
-#
+
 
     bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
     bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
@@ -127,7 +131,11 @@
     bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
     bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
-    bindsym XF86Launch2 exec flameshot gui
+
+    # Screenshot using grimshot
+    # dont forget to set entry in .config/user-dirs.dir
+    bindsym XF86Launch2 exec grimshot savecopy anything
+
 
 #
 # Resizing containers:

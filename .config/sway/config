@@ -63,8 +63,11 @@ scratchpad_minimize disable
 # Status Bar {{{
 bar {
   swaybar_command waybar
-  # mode hide
-  modifier Mod4
+  # hide bar by default (show using keybind)
+  mode hide
+  # show the bar when alt is pressed
+  # workarround to not show the bar but toggle using binding
+  modifier Mod1
 }
 # }}}:
 
