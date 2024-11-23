@@ -1,5 +1,5 @@
 ignore-empty-password
-# show-keyboard-layout
+show-keyboard-layout
 indicator-caps-lock
 
 color=24283b
