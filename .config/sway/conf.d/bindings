@@ -35,6 +35,22 @@
 #
 # Moving around:
 #
+
+    # Enter sway mode with mod + backspace
+    bindsym $mod+BackSpace mode "keyboard_mode"
+
+    # Define the keyboard mode
+    mode "keyboard_mode" {
+        # Switch to German layout (press 'd')
+        bindsym d exec "swaymsg input type:keyboard xkb_layout de"
+        # Switch to US layout (press 'u')
+        bindsym u exec "swaymsg input type:keyboard xkb_layout us"
+        # Show the on-screen keyboard (press 'k')
+        bindsym k exec "gkbd-keyboard-display -l us &"
+        # Exit the mode (press 'Escape' to return to normal mode)
+        bindsym Escape mode "default"
+    }
+
     # Move your focus around
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
