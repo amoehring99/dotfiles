@@ -21,7 +21,7 @@ set $menu ulauncher | xargs swaymsg exec --
 ### Configuration
 # Set the keyboard layout
 input "*" {
-  xkb_layout de,us
+  xkb_layout us
   # switch between layouts using Alt + Shift
   # xkb_options "grp:alt_shift_toggle"
   # xkb_options "ctrl:nocaps" # Make Caps Lock an additional Ctrl
@@ -103,6 +103,8 @@ exec swayidle -w \
   timeout 300 'swaylock -f' \
   timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
   before-sleep 'swaylock -f'
+# disable idle timeout while in fullscreen
+for_window [class=".*"] inhibit_idle fullscreen
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -121,5 +123,10 @@ exec swayidle -w \
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
-include conf.d/*
+include conf.d/bindings
+# include conf.d/output_home
+include conf.d/startup
+include conf.d/swaybar
+include conf.d/theme
+
 include /etc/sway/config.d/*

@@ -1,0 +1,17 @@
+# vim: set filetype=swayconfig
+
+# Configure the ultrawide monitor (DP-1)
+output "XMI Mi Monitor Unknown" {
+    mode 3440x1440@144Hz
+    position 0,294
+    scale 1.0
+}
+
+# Configure the vertical monitor (DP-2)
+output "LG Electronics 24GM77 0x01010101" {
+    mode 1920x1080@144.001Hz
+    position 3440,0
+    scale 1.0
+    transform 90
+    bg ~/Pictures/wallpaper/wp6257053.jpg fill
+}
