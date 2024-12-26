@@ -79,6 +79,9 @@ bar {
 for_window [app_id="blueman-manager"] floating enable, resize set 300 400,move position 1385 0
 # set ulauncher to middle of screen
 for_window [app_id="ulauncher"] floating enable, move position 665 200
+# set stm32cubemx floating
+for_window [title="STM32CubeMX"] floating enable
+for_window [title="STMCUFinder"] floating enable
 
 
 ### Output configuration
