@@ -183,8 +183,8 @@ ros2_on(){
      fi
 
      # source custom ros2 workspace
-     if [ -f "$HOME/git/ros2_ws/install/setup.bash" ]; then
-       source $HOME/git/ros2_ws/install/setup.bash
+     if [ -f "$HOME/git/amoehring99-bachelor-thesis/ROS2/ros2_ws/install/setup.bash" ]; then
+       source $HOME/git/amoehring99-bachelor-thesis/ROS2/ros2_ws/install/setup.bash
      fi
 
      # setup colcon_cd
@@ -195,6 +195,7 @@ ros2_on(){
 
 #always source ros2 in rosbox container
 if [[ $(echo $CONTAINER_ID | grep rosbox) ]]; then
+  clear
   ros2_on
 fi
 
