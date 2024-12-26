@@ -136,6 +136,18 @@ alias ez='cd ~/UNI/_SS24/Echtzeitsysteme/;
           open ~/UNI/_SS24/Echtzeitsysteme/VL/echtzeitsysteme-all.pdf;
           open ~/UNI/_SS24/Echtzeitsysteme/UB/echtzeitsysteme-ub-all.pdf;'
 
+# generate compile_commands.json for stm32 projects to use with clangd in vim
+stvim() {
+current_dir=$(pwd)
+cd **/Debug || cd ../**/Debug || printf "Debug folder not found\n" && return
+make clean;make VERBOSE=y all &> make_output.txt
+compiledb --parse make_output.txt
+rm make_output.txt
+mv compile_commands.json "$current_dir"
+cd "$current_dir" || exit
+}
+
+
 mkcd_func ()
 {
   mkdir -p -- "$1" && cd -P -- "$1" || return
